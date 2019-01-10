@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="isSignUp">
     <h3>Sign up</h3>
     <form v-on:submit.prevent="signUp">
       <input placeholder="username" v-model="user.username" />
@@ -7,7 +7,15 @@
       <input type="password" placeholder="password" v-model="user.password" />
       <input type="submit" value="Sign up" />
     </form>
-    <h4>{{username}}</h4>
+  </div>
+
+  <div v-else>
+    <h3>Sign in</h3>
+    <form v-on:submit.prevent="signIn">
+      <input placeholder="login" v-model="user.login" />
+      <input type="password" placeholder="password" v-model="user.password" />
+      <input type="submit" value="Sign in" />
+    </form>
   </div>
 </template>
 
@@ -23,19 +31,16 @@
         }
       }
     },
-    computed: {
-      username: function () {
-        const {user} = this.$store.state;
-        if (user) {
-          return user.username;
-        } else {
-          return 'Unauthorized';
-        }
-      }
+    props: {
+      isSignUp: false
     },
     methods: {
       signUp() {
         this.$store.dispatch('signUp', this.user);
+      },
+      signIn() {
+        const {login, password} = this.user;
+        this.$store.dispatch('signIn', {login, password});
       }
     }
   }

@@ -1,5 +1,5 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './modules/app.module';
+import { AppModule } from './app.module';
 import * as cors from 'cors';
 
 async function bootstrap() {
@@ -7,7 +7,7 @@ async function bootstrap() {
         allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'X-Access-Token', 'Authorization'],
         credentials: true,
         methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
-        origin: 'http://localhost:8080',
+        origin: 'http://localhost:8081',
     };
 
     const app = await NestFactory.create(AppModule);

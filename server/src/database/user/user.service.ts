@@ -11,8 +11,11 @@ export class UsersService {
         return await this.usersRepository.findAll<User>();
     }
 
+    async findOne(query): Promise<User> {
+        return await this.usersRepository.findOne<User>({where: query});
+    }
+
     async create(user: User): Promise<User> {
-        console.log('RUN');
         return await this.usersRepository.create<User>(user);
     }
 }
