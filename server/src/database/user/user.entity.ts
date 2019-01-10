@@ -2,18 +2,18 @@ import {AllowNull, Column, Length, Model, Table, Unique} from 'sequelize-typescr
 
 @Table
 export class User extends Model<User> {
-    @Column
     @AllowNull(false)
+    @Column
     username: string;
 
-    @Column
     @Unique
     @AllowNull(false)
     @Length({min: 6, max: 64})
+    @Column
     login: string;
 
-    @Column
     @AllowNull(false)
     @Length({min: 8, max: 64})
+    @Column
     password: string;
 }

@@ -12,7 +12,7 @@ const mutations = {
   //   return state.user = user;
   // },
   logOut(state) {
-    return state.user = null
+    return state.user = null;
   },
   getProfile(state, user) {
     return state.user = user;
@@ -21,7 +21,7 @@ const mutations = {
 
 const actions = {
   signUp({dispatch}, payload) {
-    Vue.http.post('auth', payload)
+    Vue.http.post('auth/signUp', payload)
       .then(res => {
         setAuthToken(res.data);
         dispatch('getProfile'); // ?

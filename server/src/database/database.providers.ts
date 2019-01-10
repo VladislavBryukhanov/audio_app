@@ -10,11 +10,11 @@ export const databaseProviders = [
                 host: 'localhost',
                 port: 3306,
                 username: 'root',
-                password: 'root',
+                password: 'rootpass',
                 database: 'audio',
             });
             sequelize.addModels([User]);
-            await sequelize.sync();
+            await User.sync();
             return sequelize;
         },
     },
