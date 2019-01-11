@@ -11,17 +11,11 @@ export class AuthService {
     ) {}
 
     signIn(user): string {
-        // ... db working
-        const userPayload = {
-            _id: '12345',
-            role: 'user',
-            session_hash: '2dh29042390j',
-        };
-        return this.jwtService.sign(userPayload);
+        const token = this.jwtService.sign({payload: user});
+        return `bearer ${token}`;
     }
 
     async validateUser(payload: User) {
-        console.log(payload, 'TEST');
         return await this.usersService.findOne(payload);
     }
 }

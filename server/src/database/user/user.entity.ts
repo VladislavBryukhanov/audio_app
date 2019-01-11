@@ -8,12 +8,12 @@ export class User extends Model<User> {
 
     @Unique
     @AllowNull(false)
-    @Length({min: 6, max: 64})
+    // @Length({min: 6, max: 64})
     @Column
     login: string;
 
     @AllowNull(false)
-    @Length({min: 8, max: 64})
+    // @Length({min: 8, max: 64})
     @Column
     password: string;
 }
