@@ -40,7 +40,10 @@
       },
       signIn() {
         const {login, password} = this.user;
-        this.$store.dispatch('signIn', {login, password});
+        this.$store.dispatch('signIn', {login, password})
+          .then(_ => {
+            this.$router.push('/home');
+          });
       }
     }
   }

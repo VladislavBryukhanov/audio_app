@@ -20,29 +20,28 @@ const mutations = {
 };
 
 const actions = {
-  signUp({dispatch}, payload) {
-    Vue.http.post('auth/signUp', payload)
-      .then(res => {
-        setAuthToken(res.data);
-        dispatch('getProfile'); // ?
-      });
+  async signUp({dispatch}, payload) {
+    const res = await Vue.http.post('auth/signUp', payload);
+    setAuthToken(res.body);
+    await dispatch('getProfile'); // ?
   },
-  signIn({dispatch}, payload) {
-    Vue.http.post('auth/signIn', payload)
-      .then(res => {
-        setAuthToken(res.data);
-        dispatch('getProfile'); // ?
-      });
+  async signIn({dispatch}, payload) {
+    const res = await Vue.http.post('auth/signIn', payload);
+    setAuthToken(res.body);
+    await dispatch('getProfile'); // ?
   },
-  getProfile({commit}) {
-    Vue.http.get('auth')
-      .then(res => {
-        commit('getProfile', res.data);
-      })
+  async getProfile({commit}) {
+    const res = await Vue.http.get('auth');
+    commit('getProfile', res.body);
   },
   logOut({commit}) {
     removeAuthToken();
     commit('logOut');
+  },
+
+  async getUsers({commit}) {
+    const users = await Vue.http.get('user');
+    console.log(users)
   }
 };
 

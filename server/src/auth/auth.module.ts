@@ -12,7 +12,7 @@ import {secretKey} from '../../secretKey';
         PassportModule.register({defaultStrategy: 'jwt'}),
         JwtModule.register({
             secretOrPrivateKey: secretKey,
-            signOptions: { expiresIn: 3600 },
+            signOptions: { expiresIn: 3600 * 24 * 31 },
         }),
         UsersModule,
     ],
