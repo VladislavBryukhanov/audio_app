@@ -4,9 +4,7 @@
       <router-link :to="{name: 'Home'}">Home</router-link>
       ___
       <router-link :to="{name: 'AudioList'}">Audio list</router-link>
-      ___
-      <router-link to="/">SignOn</router-link>
-      <button>Log out</button>
+      <button @click="logOut()">Log out</button>
     </div>
 
     <router-view></router-view>
@@ -15,6 +13,12 @@
 
 <script>
   export default {
-    name: 'PrivateNavbar'
+    name: 'PrivateNavbar',
+    methods: {
+      logOut() {
+        this.$store.dispatch('logOut');
+        this.$router.push('/')
+      }
+    }
   }
 </script>

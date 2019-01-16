@@ -7,7 +7,7 @@
     name: 'Home',
     mounted() {
       console.log('m');
-      this.$store.dispatch('getUsers');
+//      this.$store.dispatch('getUsers');
     }
   }
 </script>

@@ -1,5 +1,7 @@
 import Vue from 'vue';
-import {setAuthToken, removeAuthToken} from '../auth';
+import Vuex from 'vuex';
+import {setAuthToken, removeAuthToken, setAuthHeader} from '../auth';
+Vue.use(Vuex);
 
 const state = {
   // user: {}
@@ -31,6 +33,8 @@ const actions = {
     await dispatch('getProfile'); // ?
   },
   async getProfile({commit}) {
+    // this acrion always will be first request and because it set auth token
+    setAuthHeader();
     const res = await Vue.http.get('auth');
     commit('getProfile', res.body);
   },
@@ -45,10 +49,10 @@ const actions = {
   }
 };
 
-const intiStore = {
+const store = new Vuex.Store({
   state,
   mutations,
   actions
-};
+});
 
-export default intiStore;
+export default store;

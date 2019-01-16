@@ -4,22 +4,18 @@ import './registerServiceWorker'
 import VueResource from 'vue-resource';
 import VueRouter from 'vue-router';
 import Vuex from 'vuex';
-import routes from './router';
-import intiStore from './store';
 
 Vue.config.productionTip = false;
 
 Vue.use(VueResource);
 Vue.http.options.root = 'http://localhost:3000';
 
+// Vue.use(Vuex);
 Vue.use(VueRouter);
-Vue.use(Vuex);
 
-const router = new VueRouter({
-  mode: 'history',
-  routes
-});
-const store = new Vuex.Store(intiStore);
+// router must be imported after Vue.use(Vuex) because use store
+import store from './store';
+import router from './router';
 
 new Vue({
   router,

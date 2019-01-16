@@ -3,7 +3,13 @@ import {AUTH_TOKEN} from '../common/constants';
 
 export const setAuthToken = (token) => {
   localStorage.setItem(AUTH_TOKEN, token);
-  Vue.http.headers.common[AUTH_TOKEN] = token;
+};
+
+export const setAuthHeader = () => {
+  const token = localStorage.getItem(AUTH_TOKEN);
+  if (token) {
+    Vue.http.headers.common[AUTH_TOKEN] = token;
+  }
 };
 
 export const removeAuthToken = () => {
