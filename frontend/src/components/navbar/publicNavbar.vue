@@ -1,27 +1,30 @@
 <template>
   <div>
-    <div>
-      <h4>{{username}}</h4>
-      <router-link to="/sign_in">Sign in</router-link>
-      ___
-      <router-link to="/sign_up">Sign up</router-link>
+    <v-toolbar>
+      <v-spacer></v-spacer>
+      <v-toolbar-items>
+        <v-btn to="/sign_in" flat>
+          Sign in
+        </v-btn>
+
+        <v-btn to="/sign_up" flat>
+          Sign up
+        </v-btn>
+      </v-toolbar-items>
+    </v-toolbar>
+    <div class="content">
+      <router-view></router-view>
     </div>
-    <router-view></router-view>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'PublicNavbar',
-    computed: {
-      username: function () {
-        const {user} = this.$store.state;
-        if (user) {
-          return user.username;
-        } else {
-          return 'Unauthorized';
-        }
-      }
-    }
+    name: 'PublicNavbar'
   }
 </script>
+<style>
+  .content {
+    height:100vh;
+  }
+</style>

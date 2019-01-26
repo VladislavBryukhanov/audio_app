@@ -1,13 +1,22 @@
 <template>
   <div>
-    <div>
-      <router-link :to="{name: 'Home'}">Home</router-link>
-      ___
-      <router-link :to="{name: 'AudioList'}">Audio list</router-link>
-      <button @click="logOut()">Log out</button>
-    </div>
+    <v-toolbar>
+      <v-toolbar-items>
+        <v-btn :to="{name: 'Home'}" flat>
+          Home
+        </v-btn>
 
-    <router-view></router-view>
+        <v-btn :to="{name: 'AudioList'}" flat>
+          Audio list
+        </v-btn>
+      </v-toolbar-items>
+      <v-spacer></v-spacer>
+      <h4>Hi, {{username}}</h4>
+      <v-btn @click="logOut()">Log out</v-btn>
+    </v-toolbar>
+    <div class="content">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
@@ -19,6 +28,20 @@
         this.$store.dispatch('logOut');
         this.$router.push('/')
       }
+    }, computed: {
+      username: function () {
+        const {user} = this.$store.state;
+        if (user) {
+          return user.username;
+        } else {
+          return 'Unauthorized';
+        }
+      }
     }
   }
 </script>
+<style>
+  .content {
+    height:100vh;
+  }
+</style>

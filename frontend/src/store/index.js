@@ -1,10 +1,10 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import {setAuthToken, removeAuthToken, setAuthHeader} from '../auth';
+
 Vue.use(Vuex);
 
 const state = {
-  // user: {}
   user: null
 };
 

@@ -7,7 +7,7 @@ async function bootstrap() {
         allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'X-Access-Token', 'Authorization'],
         credentials: true,
         methods: 'GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE',
-        origin: 'http://localhost:8081',
+        origin: 'http://localhost:8080',
     };
 
     const app = await NestFactory.create(AppModule);
